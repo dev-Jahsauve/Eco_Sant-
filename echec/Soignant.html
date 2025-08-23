@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eco_sante - Plateforme de Téléconsultation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/soignant.css">
+</head>
+<body>
+    <!-- Toast notifications container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="logo-text">Eco-Santé</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active" id="nav-accueil">Accueil</a></li>
+                        <li><a href="#about" id="nav-about">À propos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content - Page d'accueil -->
+    <main id="main-content">
+        <div class="container">
+            <section class="hero">
+                <h2>Plateforme de Téléconsultation Médicale</h2>
+                <p>MediConnect relie les patients avec des professionnels de santé qualifiés pour des consultations à distance, rapides et sécurisées.</p>
+                <div class="btn-container">
+                    <a href="#" class="btn" id="btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </a>
+                    <a href="#" class="btn btn-outline" id="btn-register">
+                        <i class="fas fa-user-plus"></i> S'inscrire
+                    </a>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Consultations en ligne</h3>
+                    <p>Des consultations sécurisées par vidéo avec des professionnels de santé.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Disponibilité 24/7</h3>
+                    <p>Accédez à des soins à tout moment, selon vos besoins.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-prescription"></i>
+                    </div>
+                    <h3>Ordonnances en ligne</h3>
+                    <p>Recevez vos ordonnances directement après la consultation.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Section À propos -->
+        <section id="about" class="partners">
+            <div class="container">
+                <h3>À propos de MediConnect</h3>
+                <p>MediConnect est une plateforme innovante de téléconsultation médicale qui vise à rendre les soins de santé accessibles à tous, partout et à tout moment.</p>
+                
+                <h3 style="margin-top: 60px;">Hôpitaux partenaires</h3>
+                <div class="partner-logos">
+                    <div class="partner-logo">Hôpital Central</div>
+                    <div class="partner-logo">Clinique Saint-Louis</div>
+                    <div class="partner-logo">Institut Médical</div>
+                    <div class="partner-logo">Centre Hospitalier Universitaire</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Formulaire de connexion -->
+    <div class="auth-container" id="login-form" style="display: none;">
+        <div class="auth-form">
+            <h2>Connexion</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Votre adresse email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="Votre mot de passe" required>
+            </div>
+            <div class="form-options">
+                <label>
+                    <input type="checkbox" id="remember-me"> Se souvenir de moi
+                </label>
+                <a href="#" id="forgot-password">Mot de passe oublié ?</a>
+            </div>
+            <button class="btn" style="width: 100%;" id="login-btn">
+                <i class="fas fa-sign-in-alt"></i> <span id="login-text">Se connecter</span>
+            </button>
+            <p style="text-align: center; margin-top: 24px;">
+                Pas encore inscrit ? <a href="#" id="show-register">Créer un compte</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <div class="auth-container" id="register-form" style="display: none;">
+        <div class="auth-form">
+            <h2>Inscription</h2>
+            <div class="form-group">
+                <label for="fullname">Nom complet</label>
+                <input type="text" id="fullname" placeholder="Votre nom complet" required>
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" placeholder="Votre adresse email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Mot de passe</label>
+                <input type="password" id="register-password" placeholder="Créez un mot de passe" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmer le mot de passe</label>
+                <input type="password" id="confirm-password" placeholder="Confirmez votre mot de passe" required>
+            </div>
+            <div class="form-group">
+                <label for="specialite">Spécialité</label>
+                <input type="text" id="specialite" placeholder="Votre spécialité médicale" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" placeholder="Votre numéro de téléphone" required>
+            </div>
+            <div class="user-type">
+                <label>
+                    <input type="radio" name="user-type" value="medecin" checked> Médecin
+                </label>
+                <label>
+                    <input type="radio" name="user-type" value="naturopathe"> Naturopathe
+                </label>
+            </div>
+            <button class="btn" style="width: 100%;" id="register-btn">
+                <i class="fas fa-user-plus"></i> <span id="register-text">S'inscrire</span>
+            </button>
+            <p style="text-align: center; margin-top: 24px;">
+                Déjà inscrit ? <a href="#" id="show-login">Se connecter</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Interface après connexion -->
+    <div class="dashboard container" id="dashboard" style="display: none;">
+        <div class="dashboard-header">
+            <h2>MediConnect - Espace Professionnel</h2>
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">JD</div>
+                <span id="user-name">Dr. Julien Dupont</span>
+                <a href="#" style="margin-left: 15px;" id="logout-btn">Déconnexion</a>
+            </div>
+        </div>
+
+        <nav class="dashboard-nav">
+            <a href="#" class="nav-link active" data-section="accueil-dash">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+            <a href="#" class="nav-link" data-section="horaire-planning">
+                <i class="fas fa-clock"></i> Horaire Planning
+            </a>
+            <a href="#" class="nav-link" data-section="notifications">
+                <i class="fas fa-bell"></i> Notifications
+            </a>
+            <a href="#" class="nav-link" data-section="ordonnances">
+                <i class="fas fa-file-prescription"></i> Ordonnances
+            </a>
+            <a href="#" class="nav-link" data-section="consultation">
+                <i class="fas fa-stethoscope"></i> Consultation
+            </a>
+            <a href="#" class="nav-link" data-section="profil">
+                <i class="fas fa-user-md"></i> Profil
+            </a>
+        </nav>
+
+        <!-- Section Accueil du dashboard -->
+        <section id="accueil-dash" class="dashboard-section active">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bienvenue sur Eco-Santé</h3>
+                </div>
+                <p>Vous avez <strong>3 consultations</strong> prévues aujourd'hui.</p>
+                <p>Votre prochain rendez-vous est à <strong>14h30</strong> avec M. Martin.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Statistiques du mois</h3>
+                </div>
+                <p>Consultations réalisées: <strong>42</strong></p>
+                <p>Nouveaux patients: <strong>12</strong></p>
+                <p>Ordonnances délivrées: <strong>38</strong></p>
+            </div>
+        </section>
+
+        <!-- Section Horaire Planning -->
+        <section id="horaire-planning" class="dashboard-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Gestion des horaires</h3>
+                </div>
+                <p>Définissez vos plages horaires de disponibilité pour les consultations.</p>
+                <div class="form-group">
+                    <label>Lundi</label>
+                    <input type="text" placeholder="09:00 - 12:00, 14:00 - 18:00">
+                </div>
+                <div class="form-group">
+                    <label>Mardi</label>
+                    <input type="text" placeholder="09:00 - 12:00, 14:00 - 18:00">
+                </div>
+                <div class="form-group">
+                    <label>Mercredi</label>
+                    <input type="text" placeholder="09:00 - 12:00">
+                </div>
+                <div class="form-group">
+                    <label>Jeudi</label>
+                    <input type="text" placeholder="09:00 - 12:00, 14:00 - 18:00">
+                </div>
+                <div class="form-group">
+                    <label>Vendredi</label>
+                    <input type="text" placeholder="09:00 - 12:00, 14:00 - 17:00">
+                </div>
+                <button class="btn">Enregistrer les horaires</button>
+            </div>
+        </section>
+
+        <!-- Section Notifications -->
+        <section id="notifications" class="dashboard-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Notifications</h3>
+                </div>
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <div style="padding: 16px; border-bottom: 1px solid #e9ecef;">
+                        <p><strong>Nouveau rendez-vous</strong> - M. Martin à 14:30 aujourd'hui</p>
+                        <small style="color: #6c757d;">Il y a 10 minutes</small>
+                    </div>
+                    <div style="padding: 16px; border-bottom: 1px solid #e9ecef;">
+                        <p><strong>Rappel</strong> - Formation continue le 15/11/2023</p>
+                        <small style="color: #6c757d;">Hier</small>
+                    </div>
+                    <div style="padding: 16px; border-bottom: 1px solid #e9ecef;">
+                        <p><strong>Annulation</strong> - Mme. Dubois a annulé son rendez-vous</p>
+                        <small style="color: #6c757d;">Il y a 2 jours</small>
+                    </div>
+                    <div style="padding: 16px; border-bottom: 1px solid #e9ecef;">
+                        <p><strong>Nouveau message</strong> - Vous avez reçu un message d'un patient</p>
+                        <small style="color: #6c757d;">Il y a 3 jours</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Ordonnances -->
+        <section id="ordonnances" class="dashboard-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Gestion des ordonnances</h3>
+                </div>
+                <div class="form-group">
+                    <label for="patient">Patient</label>
+                    <select id="patient">
+                        <option>M. Martin</option>
+                        <option>Mme. Dubois</option>
+                        <option>M. Petit</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="medicament">Médicament</label>
+                    <input type="text" id="medicament" placeholder="Nom du médicament">
+                </div>
+                <div class="form-group">
+                    <label for="posologie">Posologie</label>
+                    <input type="text" id="posologie" placeholder="1 comprimé, 2 fois par jour">
+                </div>
+                <div class="form-group">
+                    <label for="duree">Durée du traitement</label>
+                    <input type="text" id="duree" placeholder="7 jours">
+                </div>
+                <button class="btn">Générer l'ordonnance</button>
+            </div>
+        </section>
+
+        <!-- Section Consultation -->
+        <section id="consultation" class="dashboard-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Consultations à venir</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e9ecef;">Date/Heure</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e9ecef;">Patient</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e9ecef;">Type</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #e9ecef;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Aujourd'hui, 14:30</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">M. Martin</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Consultation</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">
+                                    <button class="btn" style="padding: 8px 16px; font-size: 0.9rem;">Démarrer</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Demain, 09:00</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Mme. Dubois</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Suivi</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">
+                                    <button class="btn" style="padding: 8px 16px; font-size: 0.9rem;">Démarrer</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">12/11/2023, 11:00</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">M. Petit</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Première consultation</td>
+                                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">
+                                    <button class="btn" style="padding: 8px 16px; font-size: 0.9rem;">Démarrer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Profil - AFFICHAGE DES DONNÉES D'INSCRIPTION -->
+        <section id="profil" class="dashboard-section">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Informations personnelles</h3>
+                </div>
+                <div class="form-group">
+                    <label for="profile-name">Nom complet</label>
+                    <input type="text" id="profile-name" value="Dr. Julien Dupont">
+                </div>
+                <div class="form-group">
+                    <label for="profile-email">Email</label>
+                    <input type="email" id="profile-email" value="j.dupont@mediconnect.fr">
+                </div>
+                <div class="form-group">
+                    <label for="profile-specialite">Spécialité</label>
+                    <input type="text" id="profile-specialite" value="Médecin généraliste">
+                </div>
+                <div class="form-group">
+                    <label for="profile-phone">Téléphone</label>
+                    <input type="tel" id="profile-phone" value="01 23 45 67 89">
+                </div>
+                <div class="form-group">
+                    <label for="profile-type">Type de compte</label>
+                    <input type="text" id="profile-type" value="Médecin" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="profile-bio">Biographie</label>
+                    <textarea id="profile-bio" rows="4">Médecin généraliste avec 10 ans d'expérience, spécialisé dans la téléconsultation.</textarea>
+                </div>
+                <button class="btn" id="save-profile-btn">Enregistrer les modifications</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediConnect</h3>
+                    <p>Plateforme de téléconsultation médicale pour des soins accessibles à tous.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <a href="#" id="footer-accueil">Accueil</a>
+                    <a href="#about" id="footer-about">À propos</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>contact@mediconnect.fr</p>
+                    <p>+33 1 23 45 67 89</p>
+                    <p>123 Avenue de la Santé, Paris</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediConnect. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+   <script src="./assets/js/soignant.js"></script>
+</body>
+</html>

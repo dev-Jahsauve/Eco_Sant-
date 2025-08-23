@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon profil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/eco_sante.css">
+</head>
+<body>
+   
+           <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>Eco_santé</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <a href="./notification.html" class="nav-link">
+                           <i class="fas fa-bell"></i>
+                        </a>
+                        <div class="user-profile ms-auto">
+                            <div class="dropdown">
+                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="./assets/images/selfie2.png" alt="User" class="avatar">
+                                    <span class="user-name">Patient</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <a class="dropdown-item" href="./profil.html">
+                                            <i class="fas fa-cog me-2"></i>
+                                            Paramètres
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section id="dashboard-page" class="page">
+
+        <div class="dashboard-header">
+            <h2> Espace Patient</h2>
+            <div class="user-info">
+                <span id="user-name">patient. Julien Dupont</span>
+                <a href="#" style="margin-left: 15px;" id="show-login">Déconnexion</a>
+            </div>
+        </div>
+
+        <nav class="dashboard-nav">
+            <a href="./dashbord_patient.html" class="nav-link active">
+                <i class="fas fa-home"></i>Accueil
+            </a>
+            <a href="./specialiste.html" class="nav-link">
+                <i class="fas fa-user-md"></i>specialists
+            </a>
+            <a href="./Prendre RDV.html" class="nav-link">
+                <i class="fas fa-clock"></i>Mes RDV
+            </a>
+            <a href="./ordonance.html" class="nav-link">
+                <i class="fas fa-file-prescription"></i>Ordonnances
+
+            </a>
+            <a href="./consult.html" class="nav-link">
+                <i class="fas fa-stethoscope"></i>Consultation
+
+            </a>
+        </nav>
+    </section>
+        <!-- Page profil (cachée par défaut) -->
+        <section id="profile-page" class="page" >
+            <div class="container">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">JD</div>
+                        <div class="profile-info">
+                            <h2>Profil utilisateur</h2>
+                            <p>Gérez vos informations personnelles</p>
+                        </div>
+                    </div>
+
+                    <form id="profile-form">
+                        <div class="profile-form">
+                            <div class="form-group">
+                                <label for="profile-name">Nom complet</label>
+                                <input type="text" id="profile-name" value="jahsauve yimele" >
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Email</label>
+                                <input type="email" id="profile-email" value="jahsauve@example.com" >
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-phone">Téléphone</label>
+                                <input type="tel" id="profile-phone" value="698308780" >
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-role">Rôle</label>
+                                <input type="text" id="profile-role" value="Patient" >
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-password">Mot de passe</label>
+                                <input type="password" id="profile-password" value="" >
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-primary" id="edit-profile">Modifier</button>
+                                <button type="submit" class="btn-secondary" id="save-profile" disabled>Enregistrer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+            <!-- Pied de page (commun à toutes les pages) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Eco_santé</h3>
+                    <p>Plateforme de téléconsultation médicale</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <a href="#" id="footer-accueil">Accueil</a>
+                    <a href="#about" id="footer-about">À propos</a>
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>contact@Eco_santé.fr</p>
+                    <p>+33 1 23 45 67 89</p>
+                    <p>123 Rue de la Santé, Douala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Eco_santé. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+        <script src="./assets/js/eco_sante.js"></script>
+</body>
+</html>

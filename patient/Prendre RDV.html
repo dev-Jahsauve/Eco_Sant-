@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes RDV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/eco_sante.css">
+</head>
+
+<body>
+    <!-- Navigation principale (commune à toutes les pages) -->
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>Eco_santé</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <a href="./notification.html" class="nav-link">
+                           <i class="fas fa-bell"></i>
+                        </a>
+                        <div class="user-profile ms-auto">
+                            <div class="dropdown">
+                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="./assets/images/selfie2.png" alt="User" class="avatar">
+                                    <span class="user-name">Patient</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <a class="dropdown-item" href="./profil.html">
+                                            <i class="fas fa-cog me-2"></i>
+                                            Paramètres
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <section id="dashboard-page" class="page">
+
+        <div class="dashboard-header">
+            <h2> Espace Patient</h2>
+            <div class="user-info">
+                <span id="user-name">patient. Julien Dupont</span>
+                <a href="#" style="margin-left: 15px;" id="show-login">Déconnexion</a>
+            </div>
+        </div>
+
+        <nav class="dashboard-nav">
+            <a href="./dashbord_patient.html" class="nav-link active">
+                <i class="fas fa-home"></i>Accueil
+            </a>
+            <a href="./specialiste.html" class="nav-link">
+                <i class="fas fa-user-md"></i>specialists
+            </a>
+            <a href="./Prendre RDV.html" class="nav-link">
+                <i class="fas fa-clock"></i>Mes RDV
+            </a>
+            <a href="./ordonance.html" class="nav-link">
+                <i class="fas fa-file-prescription"></i>Ordonnances
+
+            </a>
+            <a href="./consult.html" class="nav-link">
+                <i class="fas fa-stethoscope"></i>Consultation
+
+            </a>
+        </nav>
+    </section>
+
+    <!-- Page rendez-vous -->
+    <section id="appointments-page" class="page">
+
+        <!-- Prise de rendez-vous -->
+        <div class="container">
+            <h2 class="page-title">Prendre un rendez-vous</h2>
+
+            <div class="card">
+                <div class="form-group">
+                    <label for="practitioner-type">Type de praticien</label>
+                    <select id="practitioner-type" class="form-control">
+                        <option value="">Tous les praticiens</option>
+                        <option value="doctor">Médecin généraliste</option>
+                        <option value="specialist">Médecin spécialiste</option>
+                        <option value="naturopath">Naturopathe</option>
+                    </select>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="btn btn-outline"><i class="fas fa-chevron-left"></i></button>
+                        <h3>Octobre 2023</h3>
+                        <button class="btn btn-outline"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="calendar">
+                        <div class="calendar-day">Lun</div>
+                        <div class="calendar-day">Mar</div>
+                        <div class="calendar-day">Mer</div>
+                        <div class="calendar-day">Jeu</div>
+                        <div class="calendar-day">Ven</div>
+                        <div class="calendar-day">Sam</div>
+                        <div class="calendar-day">Dim</div>
+
+                        <!-- Jours du calendrier -->
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day current-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <!-- ... autres jours -->
+                    </div>
+
+                    <h4 style="margin-top: 1.5rem;">Créneaux disponibles</h4>
+                    <div class="time-slots">
+                        <div class="time-slot">09:00</div>
+                        <div class="time-slot">09:30</div>
+                        <div class="time-slot">10:00</div>
+                        <div class="time-slot">10:30</div>
+                        <div class="time-slot">11:00</div>
+                        <div class="time-slot">11:30</div>
+                        <div class="time-slot">14:00</div>
+                        <div class="time-slot">14:30</div>
+                        <div class="time-slot">15:00</div>
+                        <div class="time-slot">15:30</div>
+                        <div class="time-slot">16:00</div>
+                        <div class="time-slot">16:30</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointment-reason">Motif de la consultation</label>
+                    <textarea id="appointment-reason" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button class="btn">Confirmer le rendez-vous</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page (commun à toutes les pages) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediConnect</h3>
+                    <p>Plateforme de téléconsultation médicale</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <a href="#" id="footer-accueil">Accueil</a>
+                    <a href="#about" id="footer-about">À propos</a>
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>contact@Eco_santé.fr</p>
+                    <p>+237 93 45 67 89</p>
+                    <p>123 Rue de la Santé, Douala</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Eco_santé. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/eco_sante.js"></script>
+</body>
+
+</html>
