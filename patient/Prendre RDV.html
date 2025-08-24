@@ -22,13 +22,23 @@
                 </div>
                 <nav>
                     <ul>
-                        <a href="./notification.html" class="nav-link">
-                           <i class="fas fa-bell"></i>
-                        </a>
+                        <div class="nav-bar">
+                            <a href="./dashbord_patient.html" class="nav-link active">
+                                <i class="fas fa-home"></i>Accueil
+                            </a>
+
+                            <a href="./consult.html" class="nav-link">
+                                <i class="fas fa-stethoscope"></i>Consultation
+                            </a>
+                            <a href="./notification.html" class="nav-link">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                        </div>
+
                         <div class="user-profile ms-auto">
                             <div class="dropdown">
-                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="./assets/images/selfie2.png" alt="User" class="avatar">
                                     <span class="user-name">Patient</span>
                                 </a>
@@ -47,42 +57,60 @@
             </div>
         </div>
     </header>
-    <section id="dashboard-page" class="page">
-
-        <div class="dashboard-header">
-            <h2> Espace Patient</h2>
-            <div class="user-info">
-                <span id="user-name">patient. Julien Dupont</span>
-                <a href="#" style="margin-left: 15px;" id="show-login">Déconnexion</a>
-            </div>
-        </div>
-
-        <nav class="dashboard-nav">
-            <a href="./dashbord_patient.html" class="nav-link active">
-                <i class="fas fa-home"></i>Accueil
-            </a>
-            <a href="./specialiste.html" class="nav-link">
-                <i class="fas fa-user-md"></i>specialists
-            </a>
-            <a href="./Prendre RDV.html" class="nav-link">
-                <i class="fas fa-clock"></i>Mes RDV
-            </a>
-            <a href="./ordonance.html" class="nav-link">
-                <i class="fas fa-file-prescription"></i>Ordonnances
-
-            </a>
-            <a href="./consult.html" class="nav-link">
-                <i class="fas fa-stethoscope"></i>Consultation
-
-            </a>
-        </nav>
-    </section>
-
     <!-- Page rendez-vous -->
-    <section id="appointments-page" class="page">
+     <div class="container aos-init aos-animate"  data-aos="fade-up" data-aos-delay="100">
+         <h2 class="page-title">Prendre un rendez-vous</h2>
+
+        <form action="forms/appointment.php" method="post" role="form" id="appointments-page" class="php-email-form">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required="">
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Votre e-mail" required="">
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Votre téléphone" required="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group mt-3">
+              <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Date de rendez-vous" required="">
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="department" id="department" class="form-select" required="">
+                <option value=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Sélectionnez le département</font></font></option>
+                <option value="Department 1"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Département 1</font></font></option>
+                <option value="Department 2"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Département 2</font></font></option>
+                <option value="Department 3"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Département 3</font></font></option>
+              </select>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctor" class="form-select" required="">
+                <option value=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Sélectionnez un médecin</font></font></option>
+                <option value="Doctor 1"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Docteur </font></font></option>
+                <option value="Doctor 2"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">généraliste</font></font></option>
+                <option value="Doctor 3"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Naturophate</font></font></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Message (facultatif)"></textarea>
+          </div>
+          <div class="mt-3">
+            <div class="loading"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Chargement</font></font></div>
+            <div class="error-message"></div>
+            <div class="sent-message"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Votre demande de rendez-vous a bien été envoyée. Merci&nbsp;!</font></font></div>
+            <div class="text-center"><button class="btn" type="submit" ><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Confirmer le rendez-vous</font></font></button></div>
+          </div>
+        </form>
+
+      </div>
+    <!-- <section id="appointments-page" class="page"> -->
 
         <!-- Prise de rendez-vous -->
-        <div class="container">
+        <!-- <div class="container">
             <h2 class="page-title">Prendre un rendez-vous</h2>
 
             <div class="card">
@@ -110,10 +138,10 @@
                         <div class="calendar-day">Jeu</div>
                         <div class="calendar-day">Ven</div>
                         <div class="calendar-day">Sam</div>
-                        <div class="calendar-day">Dim</div>
+                        <div class="calendar-day">Dim</div> -->
 
                         <!-- Jours du calendrier -->
-                        <div class="calendar-day">1</div>
+                        <!-- <div class="calendar-day">1</div>
                         <div class="calendar-day">2</div>
                         <div class="calendar-day">3</div>
                         <div class="calendar-day">4</div>
@@ -126,9 +154,9 @@
                         <div class="calendar-day current-day">11</div>
                         <div class="calendar-day">12</div>
                         <div class="calendar-day">13</div>
-                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">14</div> -->
                         <!-- ... autres jours -->
-                    </div>
+                    <!-- </div>
 
                     <h4 style="margin-top: 1.5rem;">Créneaux disponibles</h4>
                     <div class="time-slots">
@@ -155,7 +183,7 @@
                 <button class="btn">Confirmer le rendez-vous</button>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Pied de page (commun à toutes les pages) -->
     <footer>

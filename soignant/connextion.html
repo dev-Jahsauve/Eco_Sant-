@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - MediConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- Toast notifications container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="logo-text">Eco-Santé</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Formulaire de connexion -->
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>Connexion</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Votre adresse email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="Votre mot de passe" required>
+            </div>
+            <div class="form-options">
+                <label>
+                    <input type="checkbox" id="remember-me"> Se souvenir de moi
+                </label>
+                <a href="#" id="forgot-password">Mot de passe oublié ?</a>
+            </div>
+            <button class="btn" style="width: 100%;" id="login-btn">
+                <i class="fas fa-sign-in-alt"></i> <span id="login-text">Se connecter</span>
+            </button>
+            <p style="text-align: center; margin-top: 24px;">
+                Pas encore inscrit ? <a href="register.html" id="show-register">Créer un compte</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediConnect</h3>
+                    <p>Plateforme de téléconsultation médicale pour des soins accessibles à tous.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <a href="index.html">Accueil</a>
+                    <a href="index.html#about">À propos</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>contact@mediconnect.fr</p>
+                    <p>+33 1 23 45 67 89</p>
+                    <p>123 Avenue de la Santé, Paris</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediConnect. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="java.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Vérifier si l'utilisateur est déjà connecté
+            redirectIfLoggedIn();
+
+            // Connexion
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('remember-me').checked;
+                
+                if (!email || !password) {
+                    showToast('error', 'Erreur', 'Veuillez remplir tous les champs');
+                    return;
+                }
+                
+                // Simuler un chargement
+                const loginText = document.getElementById('login-text');
+                loginText.innerHTML = '<div class="spinner"></div> Connexion...';
+                
+                setTimeout(function() {
+                    // Vérifier les informations de connexion
+                    const user = loginUser(email, password);
+                    
+                    if (user) {
+                        // Connexion réussie
+                        currentUser = user;
+                        
+                        // Sauvegarder la session si "Se souvenir de moi" est coché
+                        if (rememberMe) {
+                            localStorage.setItem('mediconnect_current_user', JSON.stringify(user));
+                        }
+                        
+                        showToast('success', 'Connexion réussie', 'Redirection vers votre espace...');
+                        
+                        // Redirection vers le dashboard
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1500);
+                    } else {
+                        showToast('error', 'Erreur', 'Email ou mot de passe incorrect');
+                    }
+                    
+                    // Réinitialiser le texte du bouton
+                    loginText.textContent = 'Se connecter';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

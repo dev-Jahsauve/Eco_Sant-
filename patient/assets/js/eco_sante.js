@@ -1,41 +1,3 @@
-// // ===== GESTIONNAIRE DE PAGES =====
-// // Fonction pour afficher une page spécifique et masquer les autres
-// function showPage(pageId) {
-//   // Masquer toutes les pages
-//   document.querySelectorAll(".page").forEach((page) => {
-//     page.style.display = "none";
-//   });
-
-//   // Afficher la page demandée
-//   const pageElement = document.getElementById(`${pageId}-page`);
-//   if (pageElement) {
-//     pageElement.style.display = "block";
-//   }
-
-//   // Mettre à jour l'URL avec un hash pour la page actuelle
-//   window.location.hash = pageId;
-
-//   // Scroll vers le haut de la page
-//   window.scrollTo(0, 0);
-// }
-
-// // Écouter les clics sur les liens de navigation
-// document
-//   .querySelectorAll("a[data-page], button[data-page]")
-//   .forEach((element) => {
-//     element.addEventListener("click", function (e) {
-//       e.preventDefault();
-//       const pageId = this.getAttribute("data-page");
-//       showPage(pageId);
-//     });
-//   });
-
-// // Vérifier l'URL au chargement pour afficher la bonne page
-// window.addEventListener("load", function () {
-//   const hash = window.location.hash.substring(1) || "home";
-//   showPage(hash);
-// });
-
 // ===== MENU MOBILE =====
 const mobileMenu = document.getElementById("mobile-menu");
 const navMenu = document.querySelector(".nav-menu");
@@ -250,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
       phoneInput.dispatchEvent(new Event("input"));
     } else {
       // Ici, normalement, on enverrait les données au serveur
-      
+
       alert("Formulaire validé avec succès! ");
     }
   });
@@ -258,291 +220,285 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Validation formulaire de connexion
 // Attendre que le DOM soit complètement chargé
-document.addEventListener('DOMContentLoaded', function() {
-    // Références aux éléments du formulaire
-    const loginForm = document.getElementById('login-form');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const loginEmailError = document.getElementById('loginEmailError');
-    const loginPasswordError = document.getElementById('loginPasswordError');
-    
-    // Expressions régulières pour la validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
-    
-    // Fonction pour afficher les erreurs
-    function setError(element, errorElement, message) {
-        errorElement.textContent = message;
-        element.parentElement.classList.add('error');
-        element.parentElement.classList.remove('success');
+document.addEventListener("DOMContentLoaded", function () {
+  // Références aux éléments du formulaire
+  const loginForm = document.getElementById("login-form");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const loginEmailError = document.getElementById("loginEmailError");
+  const loginPasswordError = document.getElementById("loginPasswordError");
+
+  // Expressions régulières pour la validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =
+    /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+
+  // Fonction pour afficher les erreurs
+  function setError(element, errorElement, message) {
+    errorElement.textContent = message;
+    element.parentElement.classList.add("error");
+    element.parentElement.classList.remove("success");
+  }
+
+  // Fonction pour indiquer le succès
+  function setSuccess(element, errorElement) {
+    errorElement.textContent = "";
+    element.parentElement.classList.remove("error");
+    element.parentElement.classList.add("success");
+  }
+
+  // Validation de l'email en temps réel
+  emailInput.addEventListener("input", function () {
+    validateEmail();
+  });
+
+  // Validation du mot de passe en temps réel
+  passwordInput.addEventListener("input", function () {
+    validatePassword();
+  });
+
+  // Fonction de validation de l'email
+  function validateEmail() {
+    const emailValue = emailInput.value.trim();
+
+    if (emailValue === "") {
+      setError(emailInput, loginEmailError, "L'email est requis");
+      return false;
+    } else if (!emailRegex.test(emailValue)) {
+      setError(emailInput, loginEmailError, "Veuillez entrer un email valide");
+      return false;
+    } else {
+      setSuccess(emailInput, loginEmailError);
+      return true;
     }
-    
-    // Fonction pour indiquer le succès
-    function setSuccess(element, errorElement) {
-        errorElement.textContent = '';
-        element.parentElement.classList.remove('error');
-        element.parentElement.classList.add('success');
+  }
+
+  // Fonction de validation du mot de passe
+  function validatePassword() {
+    const passwordValue = passwordInput.value.trim();
+
+    if (passwordValue === "") {
+      setError(passwordInput, loginPasswordError, "Le mot de passe est requis");
+      return false;
+    } else if (!passwordRegex.test(passwordValue)) {
+      setError(
+        passwordInput,
+        loginPasswordError,
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
+      );
+      return false;
+    } else {
+      setSuccess(passwordInput, loginPasswordError);
+      return true;
     }
-    
-    // Validation de l'email en temps réel
-    emailInput.addEventListener('input', function() {
-        validateEmail();
-    });
-    
-    // Validation du mot de passe en temps réel
-    passwordInput.addEventListener('input', function() {
-        validatePassword();
-    });
-    
-    // Fonction de validation de l'email
-    function validateEmail() {
-        const emailValue = emailInput.value.trim();
-        
-        if (emailValue === '') {
-            setError(emailInput, loginEmailError, 'L\'email est requis');
-            return false;
-        } else if (!emailRegex.test(emailValue)) {
-            setError(emailInput, loginEmailError, 'Veuillez entrer un email valide');
-            return false;
-        } else {
-            setSuccess(emailInput, loginEmailError);
-            return true;
-        }
+  }
+
+  // Gestion de la soumission du formulaire
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Valider tous les champs avant soumission
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+
+    if (isEmailValid && isPasswordValid) {
+      // Afficher un message de chargement
+      const loginText = document.getElementById("login-text");
+      const originalText = loginText.textContent;
+      loginText.textContent = "Connexion en cours...";
+
+      // Simuler une requête de connexion (à remplacer par une vraie requête API)
+      setTimeout(function () {
+        alert("Connexion réussie! (ceci est une simulation)");
+        loginText.textContent = originalText;
+
+        // Réinitialiser le formulaire après connexion réussie
+        loginForm.reset();
+        emailInput.parentElement.classList.remove("success");
+        passwordInput.parentElement.classList.remove("success");
+      }, 1500);
     }
-    
-    // Fonction de validation du mot de passe
-    function validatePassword() {
-        const passwordValue = passwordInput.value.trim();
-        
-        if (passwordValue === '') {
-            setError(passwordInput, loginPasswordError, 'Le mot de passe est requis');
-            return false;
-        } else if (!passwordRegex.test(passwordValue)) {
-            setError(passwordInput, loginPasswordError, 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial');
-            return false;
-        } else {
-            setSuccess(passwordInput, loginPasswordError);
-            return true;
-        }
-    }
-    
-    // Gestion de la soumission du formulaire
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Valider tous les champs avant soumission
-        const isEmailValid = validateEmail();
-        const isPasswordValid = validatePassword();
-        
-        if (isEmailValid && isPasswordValid) {
-            // Afficher un message de chargement
-            const loginText = document.getElementById('login-text');
-            const originalText = loginText.textContent;
-            loginText.textContent = 'Connexion en cours...';
-            
-            // Simuler une requête de connexion (à remplacer par une vraie requête API)
-            setTimeout(function() {
-                alert('Connexion réussie! (ceci est une simulation)');
-                loginText.textContent = originalText;
-                
-                // Réinitialiser le formulaire après connexion réussie
-                loginForm.reset();
-                emailInput.parentElement.classList.remove('success');
-                passwordInput.parentElement.classList.remove('success');
-            }, 1500);
-        }
-    });
-    
-    // Gestion de l'option "Mot de passe oublié"
-    document.getElementById('forgot-password').addEventListener('click', function(e) {
-        e.preventDefault();
-        const emailValue = emailInput.value.trim();
-        
-        if (emailValue === '' || !emailRegex.test(emailValue)) {
-            alert('Veuillez d\'abord entrer un email valide pour réinitialiser votre mot de passe');
-            emailInput.focus();
-        } else {
-            alert('Un email de réinitialisation a été envoyé à ' + emailValue + ' (ceci est une simulation)');
-        }
+  });
+
+  // Gestion de l'option "Mot de passe oublié"
+  document
+    .getElementById("forgot-password")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      const emailValue = emailInput.value.trim();
+
+      if (emailValue === "" || !emailRegex.test(emailValue)) {
+        alert(
+          "Veuillez d'abord entrer un email valide pour réinitialiser votre mot de passe"
+        );
+        emailInput.focus();
+      } else {
+        alert(
+          "Un email de réinitialisation a été envoyé à " +
+            emailValue +
+            " (ceci est une simulation)"
+        );
+      }
     });
 });
 
-// ===== DONNÉES DE TEST =====
-// Données des spécialistes
-const specialists = [
+// ---- Données des spécialistes ----
+
+const specialistsData = [
   {
     id: 1,
-    name: "Dr. Martin Lefebvre",
-    specialty: "Cardiologue",
-    schedule: "Lun-Ven: 9h-17h",
-    price: "50€",
+    nom: "Dr. Andre Dzudie",
+    specialite: "Cardiologue",
+    planning: "Lundi, Mercredi, Vendredi",
+    creneaux: ["09:00", "11:00", "14:30"],
+    image: "images/dr_Andre.jpg",
   },
+
   {
     id: 2,
-    name: "Dr. Sophie Laurent",
-    specialty: "Dermatologue",
-    schedule: "Mar-Sam: 10h-18h",
-    price: "60€",
+    nom: "Dr. Joel Foko",
+    specialite: "Neurologue",
+    planning: "Mardi, Jeudi",
+    creneaux: ["10:00", "15:00"],
+    image: "images/dr_Joel.jpg",
   },
+
   {
     id: 3,
-    name: "Dr. Pierre Moreau",
-    specialty: "Pédiatre",
-    schedule: "Lun-Jeu: 8h-16h",
-    price: "45€",
+    nom: "Dr. Marc Santa",
+    specialite: "Phytothérapeute",
+    planning: "Tous les jours",
+    creneaux: ["09:30", "11:30", "16:00"],
+    image: "favorite/1750099474543.jpg",
   },
+
   {
     id: 4,
-    name: "Dr. Élise Bernard",
-    specialty: "Gynécologue",
-    schedule: "Mer-Ven: 9h-17h",
-    price: "55€",
+    nom: "Dr. Marc Santa",
+    specialite: "Phytothérapeute",
+    planning: "Tous les jours",
+    creneaux: ["09:30", "11:30", "16:00"],
+    image: "images/dr_Marc.jpg",
   },
 ];
 
-// Données des rendez-vous
-const appointments = [
-  {
-    id: 1,
-    reason: "Consultation générale",
-    date: "15/10/2023 - 10h30",
-    status: "En attente",
-  },
-  {
-    id: 2,
-    reason: "Suivi cardiologique",
-    date: "20/10/2023 - 14h15",
-    status: "Accepté",
-  },
-];
+// ---- Fonction pour afficher les spécialistes ----
 
-// Données des notifications
-const notifications = [
-  {
-    id: 1,
-    title: "Rendez-vous confirmé",
-    content:
-      "Votre rendez-vous avec le Dr. Martin Lefebvre a été confirmé. Lien de visioconférence: https://eco-sante.fr/visio/abc123",
-    date: "12/10/2023 09:30",
-    status: "Non lu",
-  },
-  {
-    id: 2,
-    title: "Nouvelle ordonnance disponible",
-    content: "Votre ordonnance du 10/10/2023 est disponible dans votre espace.",
-    date: "10/10/2023 16:45",
-    status: "Lu",
-  },
-];
+function displaySpecialist(specialists) {
+  // console.log("La fonction displaySpecialists est appelée.");
+  const listContainer = document.getElementById("specialist-list");
+  listContainer.innerHTML = ""; // Nettoyer la liste existante
 
-// Données des ordonnances
-const prescriptions = [
-  {
-    id: 1,
-    doctor: "Dr. Martin Lefebvre",
-    date: "10/10/2023",
-    observations: "Pression artérielle légèrement élevée",
-    recommendations:
-      "Réduire la consommation de sel, exercice physique régulier",
-    nextAppointment: "10/01/2024",
-    exams: "Prise de sang à jeun",
-  },
-  {
-    id: 2,
-    doctor: "Dr. Sophie Laurent",
-    date: "05/09/2023",
-    observations: "Peau sèche avec irritation modérée",
-    recommendations: "Appliquer une crème hydratante deux fois par jour",
-    nextAppointment: "05/12/2023",
-    exams: "Aucun",
-  },
-];
-
-// ===== FONCTIONNALITÉS DU TABLEAU DE BORD =====
-// Recherche de spécialistes
-const specialistSearch = document.getElementById("specialist-search");
-const specialistResults = document.getElementById("specialist-results");
-
-if (specialistSearch && specialistResults) {
-  // Afficher tous les spécialistes au chargement
-  displaySpecialists(specialists);
-
-  // Recherche en temps réel
-  specialistSearch.addEventListener("input", function () {
-    const searchTerm = this.value.toLowerCase();
-    const filteredSpecialists = specialists.filter(
-      (specialist) =>
-        specialist.name.toLowerCase().includes(searchTerm) ||
-        specialist.specialty.toLowerCase().includes(searchTerm)
-    );
-
-    displaySpecialists(filteredSpecialists);
-  });
-}
-
-// Fonction pour afficher les spécialistes
-function displaySpecialists(specialistsList) {
-  specialistResults.innerHTML = "";
-
-  if (specialistsList.length === 0) {
-    specialistResults.innerHTML = "<p>Aucun spécialiste trouvé.</p>";
+  if (specialists.lengh === 0) {
+    listContainer.innerHTML = "<p>Aucun spécialiste trouvé.</p>";
     return;
   }
 
-  specialistsList.forEach((specialist) => {
-    const specialistCard = document.createElement("div");
-    specialistCard.className = "specialist-card";
-    specialistCard.innerHTML = `
-                    <div class="specialist-info">
-                        <h3>${specialist.name}</h3>
-                        <p>${specialist.specialty}</p>
-                    </div>
-                    <div class="specialist-schedule">
-                        <p>${specialist.schedule}</p>
-                    </div>
-                    <div class="specialist-actions">
-                        <p class="specialist-price">${specialist.price}</p>
-                        <button class="btn-primary take-appointment" data-id="${specialist.id}">Prendre RDV</button>
-                    </div>
-                `;
+  specialistsData.forEach((specialist) => {
+    const specialistBlock = document.createElement("div");
+    specialistBlock.classList.add("specialist-block");
+    specialistBlock.innerHTML = `
+        <div class="specialist-info">
+            <img src="${specialist.image}" alt="Photo de ${specialist.nom}">
+            <div class="details">
+                <h3>${specialist.nom}</h3>
+                <p class="specialty">${specialist.specialite}</p>
+            </div>    
+        </div>
+        <div class="planning-info">
+            <p><strong>Planning :</strong>${specialist.planning}</p>
+         <p><strong>Crénaux :</strong>${specialist.creneaux.join(", ")}</p>
+        </div>
+        <div class="rdv-action">
+            
+            <button class="btn btn-rdv" data-id="${
+              specialist.id
+            }">Prendre un rendez-vous</button>
+        </div>
+        `;
 
-    specialistResults.appendChild(specialistCard);
+    listContainer.appendChild(specialistBlock);
   });
 
-  // Ajouter les écouteurs d'événements pour les boutons
-  document.querySelectorAll(".take-appointment").forEach((button) => {
-    button.addEventListener("click", function () {
-      const specialistId = this.getAttribute("data-id");
-      // Simuler la prise de rendez-vous
-      alert(`Rendez-vous pris avec le spécialiste #${specialistId}`);
-      showPage("appointments");
+  // ---- Ajout des évènements sur les boutons "Prendre un rendez-vous" ----
+
+  document.querySelectorAll(".btn-rdv").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const specialistId = event.target.dataset.id;
+      const specialist = specialistsData.find((s) => s.id == specialistId);
+      if (specialist) {
+        showModal(specialist);
+      }
     });
   });
 }
 
-// Afficher les rendez-vous
-const appointmentsList = document.getElementById("appointments-list");
-if (appointmentsList) {
-  displayAppointments();
+// ---- Fonctionnalité de recherche dynamique ----
+
+const searchInput = document.getElementById("specialist-search");
+searchInput.addEventListener("input", (event) => {
+  const searchTerm = event.target.value.toLowerCase();
+  const filteredSpecialists = specialistsData.filter(
+    (specialist) =>
+      specialist.nom.toLowerCase().includes(searchTerm) ||
+      specialist.specialite.toLowerCase().includes(searchTerm)
+  );
+  displaySpecialist(filteredSpecialists);
+});
+
+// ---- Gestion du Modal ----
+
+const modal = document.getElementById("rdv-modal");
+const closeBtn = document.querySelector(".close-btn");
+
+function showModal(specialist) {
+  document.getElementById(
+    "modal-specialist-name"
+  ).textContent = `Prendre rendez-vous avec ${specialist.nom}`;
+  modal.style.display = "block"; // Afficher le modal
 }
 
-function displayAppointments() {
-  appointmentsList.innerHTML = "";
-
-  appointments.forEach((appointment) => {
-    const statusClass =
-      appointment.status === "Accepté" ? "status-accepted" : "status-pending";
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-                    <td>${appointment.reason}</td>
-                    <td>${appointment.date}</td>
-                    <td><span class="status-badge ${statusClass}">${appointment.status}</span></td>
-                `;
-
-    appointmentsList.appendChild(row);
-  });
+function hideModal() {
+  modal.style.display = "none"; // Cacher le modal
 }
+
+// Cacher le modal si l'utilisateur clique sur le bouton de fermeture ou en dehors du modal
+
+closeBtn.addEventListener("click", hideModal);
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    hideModal();
+  }
+});
+
+// ---- Gestion de la soumission du formulaire du modal ----
+
+const rdvForm = document.getElementById("rdv-form");
+rdvForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Empeche le chargement de la page
+
+  const formData = new formData(rdvForm);
+  const rdvData = Object.fromEntries(formData.entries());
+
+  // Affichage des données dans la console
+
+  console.log("Rendez-vous confirmé :", rdvData);
+
+  // Fermeture du modal après soumission
+
+  hideModal();
+
+  // Redirection vers la page des rendez-vous
+
+  window.location.href = "Rendezvous.html";
+});
+
+// Affichage de tous les specialistes au chargement de la page
+
+document.addEventListener("DOMContentLoaded", () => {
+  displaySpecialist(specialistsData);
+});
+
 
 // Afficher les notifications
 const notificationsContainer = document.getElementById(

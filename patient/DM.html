@@ -21,13 +21,23 @@
                 </div>
                 <nav>
                     <ul>
-                        <a href="./notification.html" class="nav-link">
-                           <i class="fas fa-bell"></i>
-                        </a>
+                        <div class="nav-bar">
+                            <a href="./dashbord_patient.html" class="nav-link active">
+                                <i class="fas fa-home"></i>Accueil
+                            </a>
+
+                            <a href="./consult.html" class="nav-link">
+                                <i class="fas fa-stethoscope"></i>Consultation
+                            </a>
+                            <a href="./notification.html" class="nav-link">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                        </div>
+
                         <div class="user-profile ms-auto">
                             <div class="dropdown">
-                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a href="./profil.html" class="dropdown-toggle" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="./assets/images/selfie2.png" alt="User" class="avatar">
                                     <span class="user-name">Patient</span>
                                 </a>
@@ -46,36 +56,6 @@
             </div>
         </div>
     </header>
-    <section id="dashboard-page" class="page">
-
-        <div class="dashboard-header">
-            <h2> Espace Patient</h2>
-            <div class="user-info">
-                <span id="user-name">patient. Julien Dupont</span>
-                <a href="#" style="margin-left: 15px;" id="show-login">Déconnexion</a>
-            </div>
-        </div>
-
-        <nav class="dashboard-nav">
-            <a href="./dashbord_patient.html" class="nav-link active">
-                <i class="fas fa-home"></i>Accueil
-            </a>
-            <a href="./specialiste.html" class="nav-link">
-                <i class="fas fa-user-md"></i>specialists
-            </a>
-            <a href="./Prendre RDV.html" class="nav-link">
-                <i class="fas fa-clock"></i>Mes RDV
-            </a>
-            <a href="./ordonance.html" class="nav-link">
-                <i class="fas fa-file-prescription"></i>Ordonnances
-
-            </a>
-            <a href="./consult.html" class="nav-link">
-                <i class="fas fa-stethoscope"></i>Consultation
-
-            </a>
-        </nav>
-    </section>
     <!-- Page ordonnances -->
     <section id="prescriptions-page" class="page">
         <div class="container">

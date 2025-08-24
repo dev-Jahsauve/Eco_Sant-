@@ -339,12 +339,11 @@ main {
   color: white;
 }
 
-.dashboard-section {
+#dashboard-section {
   display: none;
   animation: fadeIn 0.5s ease;
 }
-
-.dashboard-section.active {
+#dashboard-section.active {
   display: block;
 }
 
