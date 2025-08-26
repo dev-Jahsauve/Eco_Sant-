@@ -1,11 +1,31 @@
 // ===== MENU MOBILE =====
-const mobileMenu = document.getElementById("mobile-menu");
-const navMenu = document.querySelector(".nav-menu");
+// const mobileMenu = document.getElementById("mobile-menu");
+// const navMenu = document.querySelector(".nav-menu");
 
-mobileMenu.addEventListener("click", function () {
-  navMenu.classList.toggle("active");
-});
+// mobileMenu.addEventListener("click", function () {
+//   navMenu.classList.toggle("active");
+// });
+/*  javascript menu burger register */
+const icon_bar_register=document.querySelector('.icon-bar-register');
+const parent_bar_register=document.querySelector('.parent-bar-register');
+console.log(parent_bar_register);
+icon_bar_register.addEventListener('click',()=>
+{ console.log(parent_bar_register);
+  parent_bar_register.classList.toggle("vue");
+  
+})
+/*end  javascript menu burger register */
 
+/*  javascript menu burger register */
+// const icons_nav_bar=document.querySelector('.icons-nav-bar');
+// const parents_nav_bar=document.querySelector('.parents-nav-bar');
+// console.log(parents-nav-bar);
+// icons_bar_register.addEventListener('click',()=>
+// { console.log(parents-nav-bar);
+//   parents-nav-bar.classList.toggle("vue");
+  
+// })
+/*end  javascript menu burger register */
 // ===== VALIDATION DES FORMULAIRES =====
 // Regex pour validation
 const patterns = {
@@ -514,26 +534,26 @@ function displayNotifications() {
   notifications.forEach((notification) => {
     const notificationCard = document.createElement("div");
     notificationCard.className = "notification-card";
-    notificationCard.innerHTML = `
-                    <div class="notification-header">
-                        <h3>${notification.title}</h3>
-                        <span class="notification-date">${
-                          notification.date
-                        }</span>
-                    </div>
-                    <p>${notification.content}</p>
-                    <div class="notification-actions">
-                        ${
-                          notification.title.includes("visioconférence") ? (
-                            <a href="#" class="video-link">
-                              Rejoindre la visioconférence
-                            </a>
-                          ) : (
-                            ""
-                          )
-                        }
-                    </div>
-                `;
+    // notificationCard.innerHTML = `
+    //                 <div class="notification-header">
+    //                     <h3>${notification.title}</h3>
+    //                     <span class="notification-date">${
+    //                       notification.date
+    //                     }</span>
+    //                 </div>
+    //                 <p>${notification.content}</p>
+    //                 <div class="notification-actions">
+    //                     ${
+    //                       notification.title.includes("visioconférence") ? (
+    //                         <a href="#" class="video-link">
+    //                           Rejoindre la visioconférence
+    //                         </a>
+    //                       ) : (
+    //                         ""
+    //                       )
+    //                     }
+    //                 </div>
+    //             `;
 
     notificationsContainer.appendChild(notificationCard);
   });

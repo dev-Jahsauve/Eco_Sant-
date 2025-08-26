@@ -5,29 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
     <link rel="stylesheet" href="./assets/fontawesome-free-6.7.2-web/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/eco_sante.css">
+    <script src="./assets/js/eco_sante.js" defer></script>
+
 </head>
 
 <body>
     <!-- Navigation principale (commune à toutes les pages) -->
     <!-- Header -->
     <header>
-        <div class="container">
+        <div class="container register">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-heartbeat"></i>
                     <h1>Eco_santé</h1>
                 </div>
-                <nav>
-                    <ul>
+                <nav class="parent-bar-register">
+                    <ul class="bar-register">
                         <li><a href="./eco_sante.html" class="active" id="nav-accueil">Accueil</a></li>
                         <li><a href="#about" id="nav-about">À propos</a></li>
                         <li><a href="./login.html" class="btn" id="btn-login">Se connecter</a></li>
                     </ul>
                 </nav>
             </div>
+            <span><i class="fa-solid fa-bars fa-2x icon-bar-register"></i></span>
         </div>
     </header>
 
@@ -105,7 +108,7 @@
             </div>
         </div>
     </footer>
-    <script src="./assets/js/eco_sante.js"></script>
+    
 </body>
 
 </html>
